@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warships</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <section id="intro-screen" class="screen">
+        <div id="start-screen-content">
+            <header>
+                <h1 id="game-title">Warships</h1>
+            </header>
+            <div id="name-input-wrapper">
+                <input id="player-name-input" type="text" placeholder="ENTER YOUR NAME" maxlength="20" autocomplete="off">
+            </div>
+            <nav>
+                <div id="start-screen-controls">
+                    <button id="play-btn" class="start-screen-button btn-big">
+                        <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                            <path fill="rgb(51, 255, 51)" d="M187.2 100.9C174.8 94.1 159.8 94.4 147.6 101.6C135.4 108.8 128 121.9 128 136L128 504C128 518.1 135.5 531.2 147.6 538.4C159.7 545.6 174.8 545.9 187.2 539.1L523.2 355.1C536 348.1 544 334.6 544 320C544 305.4 536 291.9 523.2 284.9L187.2 100.9z"/>
+                        </svg>
+                    </button>
+                    <button id="mute-btn" class="start-screen-button btn-big mute-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                            <g class="icon-sound">
+                                <path fill="rgb(51, 255, 51)" d="M80 416L128 416L262.1 535.2C268.5 540.9 276.7 544 285.2 544C304.4 544 320 528.4 320 509.2L320 130.8C320 111.6 304.4 96 285.2 96C276.7 96 268.5 99.1 262.1 104.8L128 224L80 224C53.5 224 32 245.5 32 272L32 368C32 394.5 53.5 416 80 416z"/>
+                                <path fill="none" stroke="rgb(51,255,51)" stroke-width="40" stroke-linecap="round" d="M390 255 Q440 320 390 385"/>
+                                <path fill="none" stroke="rgb(51,255,51)" stroke-width="40" stroke-linecap="round" d="M455 195 Q530 320 455 445"/>
+                            </g>
+                            <g class="icon-muted">
+                                <path fill="rgb(51, 255, 51)" d="M80 416L128 416L262.1 535.2C268.5 540.9 276.7 544 285.2 544C304.4 544 320 528.4 320 509.2L320 130.8C320 111.6 304.4 96 285.2 96C276.7 96 268.5 99.1 262.1 104.8L128 224L80 224C53.5 224 32 245.5 32 272L32 368C32 394.5 53.5 416 80 416zM399 239C389.6 248.4 389.6 263.6 399 272.9L446 319.9L399 366.9C389.6 376.3 389.6 391.5 399 400.8C408.4 410.1 423.6 410.2 432.9 400.8L479.9 353.8L526.9 400.8C536.3 410.2 551.5 410.2 560.8 400.8C570.1 391.4 570.2 376.2 560.8 366.9L513.8 319.9L560.8 272.9C570.2 263.5 570.2 248.3 560.8 239C551.4 229.7 536.2 229.6 526.9 239L479.9 286L432.9 239C423.5 229.6 408.3 229.6 399 239z"/>
+                            </g>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </section>
+
+    <section id="placement-screen" class="screen hidden">
+        <div id="placement-screen-content">
+            <div id="ships-left-container"></div>
+
+            <div id="placement-board"></div>
+
+            <aside id="placement-controls-aside">
+                <div id="placement-controls">
+                    <button id="rotate-btn" class="placement-screen-button btn-small">
+                        <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                            <path fill="rgb(51, 255, 51)" d="M552 256L408 256C398.3 256 389.5 250.2 385.8 241.2C382.1 232.2 384.1 221.9 391 215L437.7 168.3C362.4 109.7 253.4 115 184.2 184.2C109.2 259.2 109.2 380.7 184.2 455.7C259.2 530.7 380.7 530.7 455.7 455.7C463.9 447.5 471.2 438.8 477.6 429.6C487.7 415.1 507.7 411.6 522.2 421.7C536.7 431.8 540.2 451.8 530.1 466.3C521.6 478.5 511.9 490.1 501 501C401 601 238.9 601 139 501C39.1 401 39 239 139 139C233.3 44.7 382.7 39.4 483.3 122.8L535 71C541.9 64.1 552.2 62.1 561.2 65.8C570.2 69.5 576 78.3 576 88L576 232C576 245.3 565.3 256 552 256z"/>
+                        </svg>
+                    </button>
+                    <button id="clear-board-btn" class="placement-screen-button btn-small">
+                        <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                            <path fill="rgb(51, 255, 51)" d="M232.7 69.9L224 96L128 96C110.3 96 96 110.3 96 128C96 145.7 110.3 160 128 160L512 160C529.7 160 544 145.7 544 128C544 110.3 529.7 96 512 96L416 96L407.3 69.9C402.9 56.8 390.7 48 376.9 48L263.1 48C249.3 48 237.1 56.8 232.7 69.9zM512 208L128 208L149.1 531.1C150.7 556.4 171.7 576 197 576L443 576C468.3 576 489.3 556.4 490.9 531.1L512 208z"/>
+                        </svg>
+                    </button>
+                    <button id="confirm-placement-btn" class="placement-screen-button btn-small">
+                        <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                            <path fill="rgb(51, 255, 51)" d="M187.2 100.9C174.8 94.1 159.8 94.4 147.6 101.6C135.4 108.8 128 121.9 128 136L128 504C128 518.1 135.5 531.2 147.6 538.4C159.7 545.6 174.8 545.9 187.2 539.1L523.2 355.1C536 348.1 544 334.6 544 320C544 305.4 536 291.9 523.2 284.9L187.2 100.9z"/>
+                        </svg>
+                    </button>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <section id="game-screen" class="screen hidden">
+        <div id="game-scene" class="screen">
+            <div class="ocean-viewport">
+                <div class="board-wrapper">
+                    <span class="board-label">ENEMY FLEET</span>
+                    <div id="enemy-board-3d" class="board-3d"></div>
+                </div>
+                <div class="board-wrapper">
+                    <span class="board-label" id="player-board-label">YOUR FLEET</span>
+                    <div id="player-board-3d" class="board-3d"></div>
+                </div>
+            </div>
+
+            <header class="game-header">
+                <div class="hud-top-right">
+                    <button id="game-mute-btn" class="icon-btn placement-screen-button mute-btn" aria-label="Mute sound">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                            <g class="icon-sound">
+                                <path fill="rgb(51, 255, 51)" d="M80 416L128 416L262.1 535.2C268.5 540.9 276.7 544 285.2 544C304.4 544 320 528.4 320 509.2L320 130.8C320 111.6 304.4 96 285.2 96C276.7 96 268.5 99.1 262.1 104.8L128 224L80 224C53.5 224 32 245.5 32 272L32 368C32 394.5 53.5 416 80 416z"/>
+                                <path fill="none" stroke="rgb(51,255,51)" stroke-width="40" stroke-linecap="round" d="M390 255 Q440 320 390 385"/>
+                                <path fill="none" stroke="rgb(51,255,51)" stroke-width="40" stroke-linecap="round" d="M455 195 Q530 320 455 445"/>
+                            </g>
+                            <g class="icon-muted">
+                                <path fill="rgb(51, 255, 51)" d="M80 416L128 416L262.1 535.2C268.5 540.9 276.7 544 285.2 544C304.4 544 320 528.4 320 509.2L320 130.8C320 111.6 304.4 96 285.2 96C276.7 96 268.5 99.1 262.1 104.8L128 224L80 224C53.5 224 32 245.5 32 272L32 368C32 394.5 53.5 416 80 416zM399 239C389.6 248.4 389.6 263.6 399 272.9L446 319.9L399 366.9C389.6 376.3 389.6 391.5 399 400.8C408.4 410.1 423.6 410.2 432.9 400.8L479.9 353.8L526.9 400.8C536.3 410.2 551.5 410.2 560.8 400.8C570.1 391.4 570.2 376.2 560.8 366.9L513.8 319.9L560.8 272.9C570.2 263.5 570.2 248.3 560.8 239C551.4 229.7 536.2 229.6 526.9 239L479.9 286L432.9 239C423.5 229.6 408.3 229.6 399 239z"/>
+                            </g>
+                        </svg>
+                    </button>
+                    <button class="icon-btn placement-screen-button exit-btn" aria-label="Exit game">
+                        <!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.-->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                            <path fill="rgb(51, 255, 51)" d="M183 183C192.4 173.6 207.6 173.6 216.9 183L320 286.1L423.1 183C432.5 173.6 447.7 173.6 457 183C466.3 192.4 466.4 207.6 457 216.9L353.9 320L457 423.1C466.4 432.5 466.4 447.7 457 457C447.6 466.3 432.4 466.4 423.1 457L320 353.9L216.9 457C207.5 466.4 192.3 466.4 183 457C173.7 447.6 173.6 432.4 183 423.1L286.1 320L183 216.9C173.6 207.5 173.6 192.3 183 183z"/>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <div id="turn-indicator" class="hidden">ENEMY TURN</div>
+
+            <aside id="game-sidebar">
+                <div id="radar-overlay" class="radar-container hidden">
+                    <div class="radar-window">
+                        <div class="grid-labels-y"></div>
+                        <div id="shooting-grid" class="radar-grid"></div>
+                        <div class="grid-labels-x"></div>
+
+                        <div class="radar-footer">
+                            <span id="enemy-fleet-status">READY TO FIRE</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer id="game-footer">
+            <small>Warships &copy; 2026</small>
+        </footer>
+    </section>
+
+    <section id="end-screen" class="screen hidden">
+        <div id="end-screen-content">
+            <h2 id="end-result"></h2>
+            <button id="play-again-btn" class="start-screen-button">PLAY AGAIN</button>
+        </div>
+    </section>
+
+    <audio id="bgm-audio" loop src="./assets/sound/Oscillations%20(Antarctic%20Wastelands).mp3"></audio>
+    <audio id="hit-audio"       src="./assets/sound/hit.mp3"></audio>
+    <audio id="miss-audio"      src="./assets/sound/miss.mp3"></audio>
+    <audio id="sunk-audio"      src="./assets/sound/sunk.mp3"></audio>
+
+    <game-toast id="game-toast"></game-toast>
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>
